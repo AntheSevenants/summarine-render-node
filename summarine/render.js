@@ -50,6 +50,11 @@ const Colours = {
     "pink": ["#ff7fff", "#e572e5"]
 };
 
+function readResource(resourcesFolderPath, resourceId) {
+    const resourcePath = `${resourcesFolderPath}/${resourceId}`;
+    return fs.readFileSync(resourcePath, { encoding: "utf8" });
+}
+
 async function render(coursePath, filename, settings) {
     const resourcesFolderPath = `${coursePath}/.resources/`;
     const courseMetaPath = `${coursePath}/meta.json`;
@@ -77,7 +82,7 @@ async function render(coursePath, filename, settings) {
         Resource replacements
      */
     markdown = markdown.replace(Regexes.IMAGE,
-        (match, captureGroup) => { return "(" + "TODO" + ")" });
+        (match, captureGroup) => { return "(" + readResource(resourcesFolderPath, captureGroup) + ")" });
     markdown = markdown.replace(Regexes.AUDIO,
         (match, captureGroup) => { return Tools.generateAudio(this.blobs[captureGroup]); });
     markdown = markdown.replace(Regexes.VIDEOLOOP,
