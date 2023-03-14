@@ -1,8 +1,20 @@
-let MarkdownIt = require('markdown-it'),
-md = new MarkdownIt();
+const fs = require('fs');
 
-function render() {
+const MarkdownIt = require('markdown-it');
+const md = new MarkdownIt();
 
+async function render(coursePath, filename) {
+    const resourcesFolderPath = `${coursePath}/.resources/`;
+    const courseMetaPath = `${coursePath}/meta.json`;
+    const filePath = `${coursePath}/${filename}/`;
+    const fileContentPath = `${filePath}/content.md`;
+
+    const markdownContent = await fs.readFileSync(fileContentPath, { encoding: "utf8" });
+    const courseMeta = await fs.readFileSync(courseMetaPath, { encoding: "utf8" })
+
+    // todo: current color
+
+    return md.render(markdownContent);
 }
 
 module.exports = { render };

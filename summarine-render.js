@@ -7,3 +7,6 @@ if (process.argv.length < 4) {
 const coursePath = process.argv[2];
 const filename = process.argv[3];
 
+summarine.render(coursePath, filename).then(htmlContent => {
+    console.log(htmlContent);
+});
