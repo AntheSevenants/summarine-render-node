@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Tools = require("./tools");
+const Templating = require("./templating");
 
 const MarkdownIt = require('markdown-it');
 const MarkdownItSub = require('markdown-it-sub');
@@ -116,7 +117,10 @@ async function render(coursePath, filename, settings) {
     */
     markdown = markdown.replace(/\$colour/g, Colours[currentColour][0]);
 
-    return md.render(markdown);
+    markdown = md.render(markdown);
+    markdown = await Templating.wrapTemplate(markdown, currentColour);
+
+    return markdown;
 }
 
 module.exports = { render };
