@@ -3,7 +3,7 @@ const fs = require('fs');
 const MarkdownIt = require('markdown-it');
 const md = new MarkdownIt();
 
-async function render(coursePath, filename) {
+async function render(coursePath, filename, settings) {
     const resourcesFolderPath = `${coursePath}/.resources/`;
     const courseMetaPath = `${coursePath}/meta.json`;
     const filePath = `${coursePath}/${filename}/`;

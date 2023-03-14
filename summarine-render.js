@@ -1,4 +1,5 @@
 const summarine = require("./summarine/render");
+const fs = require('fs');
 
 if (process.argv.length < 4) {
     throw Error("Not all arguments were supplied");
@@ -7,6 +8,17 @@ if (process.argv.length < 4) {
 const coursePath = process.argv[2];
 const filename = process.argv[3];
 
-summarine.render(coursePath, filename).then(htmlContent => {
-    console.log(htmlContent);
+fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    
+    settings = JSON.parse(settings);
+
+    summarine.render(coursePath, filename, settings).then(htmlContent => {
+        console.log(htmlContent);
+    });
 });
+
+
