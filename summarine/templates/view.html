@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- VIEW view
+			Shown when studying a markdown file -->
+<div class="view viewer anthe" id="view_view">
+    <div id="segment_renderedViewer" class="summary scroll vdsk segment">
+        {{ markdown | safe }}
+    </div>
+    <div id="segment_extra" class="item modal dock extra segment">
+    </div>
+
+    <script>
+        /*
+            Summarine allows you to prefix a list item with either => or <-> which translate to the fancy
+            arrows you see below. Then, the following code sets their bullet to this symbol.
+        */
+        function adaptList(targetElement)
+        {
+            var elementsLi = targetElement.getElementsByTagName('li');
+
+            for (var i = 0; i < elementsLi.length; i++) {
+                var elementIndex = i;
+
+                var firstChild = elementsLi[elementIndex].firstChild;
+
+                if (firstChild != null) {
+                    if (firstChild.nodeValue != null) {
+                        let character = firstChild.nodeValue.substring(0, 1);
+
+                        let charClassMap = { "⇒": "conclusion", "⟷": "contrast", "↳": "result", "≠": "unequal" };
+
+                        if (character in charClassMap) {
+                            elementsLi[elementIndex].className = charClassMap[character];
+                            firstChild.nodeValue = firstChild.nodeValue.substring(1, firstChild.nodeValue.length);
+                        }
+                    }
+                }
+            }
+        }
+        
+        function adaptCode(targetDocument)
+	    {
+	    	let elementsCode = targetDocument.getElementsByTagName("code");
+	    	for (var i = 0; i < elementsCode.length; i++)
+	    	{
+	    		var elementCode = elementsCode[i];
+
+	    		if (typeof elementCode.className == "")
+	    		{
+                    elementCode.className = "language-none";
+                }
+	    		
+	    		Prism.highlightElement(elementCode);
+	    	}
+	    }
+
+        const renderedViewer = document.querySelector("#segment_renderedViewer");
+        adaptList(renderedViewer);
+        adaptCode(renderedViewer);
+    </script>
+</div>
+{% endblock %}
