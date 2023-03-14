@@ -1,4 +1,5 @@
 const summarine = require("./summarine/render");
+const Templating = require("./summarine/templating");
 const fs = require('fs');
 
 if (process.argv.length < 3) {
@@ -28,12 +29,32 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
         fs.mkdirSync(outputDirectory);
     }
 
+    let groups = {}
+
     directories.forEach(filename => {
         const outputFile = `${outputDirectory}/${filename}.html`;
+        const fileMetaPath = `${coursePath}/${filename}/meta.json`;
+
+        const fileMeta = JSON.parse(fs.readFileSync(fileMetaPath, { encoding: "utf8" }));
+
+        if (!(fileMeta["group"] in groups)) {
+            groups[fileMeta["group"]] = [];
+        }
+
+        groups[fileMeta["group"]].push(filename);
 
         summarine.render(coursePath, filename, settings).then(htmlContent => {
             fs.writeFile(outputFile, htmlContent, () => { });
         });
+    });
+
+    const courseMetaPath = `${coursePath}/meta.json`;
+    const courseMeta = JSON.parse(fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
+
+    const indexFile = `${outputDirectory}/index.html`;
+
+    Templating.renderOverview(groups, courseMeta["colour"]).then(htmlOverview => {
+        fs.writeFile(indexFile, htmlOverview, () => { });
     });
 });
 

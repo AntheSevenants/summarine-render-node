@@ -12,4 +12,11 @@ async function wrapTemplate(htmlContent, currentColour) {
     });
 }
 
-module.exports = { wrapTemplate };
+async function renderOverview(groups, currentColour) {
+    return twing.render("overview.html", {
+        groups: groups,
+        color: currentColour
+    }).then((output) => { return output; });
+}
+
+module.exports = { wrapTemplate, renderOverview };
