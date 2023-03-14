@@ -17,7 +17,7 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
     settings = JSON.parse(settings);
 
     summarine.render(coursePath, filename, settings).then(htmlContent => {
-        console.log(htmlContent);
+        fs.writeFile("test.html", htmlContent, () => {});
     });
 });
 
