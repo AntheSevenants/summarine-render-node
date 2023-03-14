@@ -104,7 +104,7 @@ async function render(coursePath, filename, settings) {
      */
     for (var i = 0; i < settings.highlights.length; i++) {
         markdown = markdown.replace(
-            new RegExp("\\b" + Tools.escapeRegExp(settings.highlights[i]) + "\\b", "g"),
+            new RegExp("\\b" + Tools.escapeRegExp(settings.highlights[i]) + "\\b(?<!\\!\\[Image\\]\\(.*)", "g"),
             "<span class=\"language\">" + settings.highlights[i] + "</span>");
     }
 
