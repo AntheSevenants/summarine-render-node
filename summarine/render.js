@@ -59,8 +59,6 @@ async function render(coursePath, filename, settings) {
     const courseMeta = JSON.parse(await fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
     const currentColour = courseMeta["colour"];
 
-    console.log(currentColour);
-
     for (let container in settings.containers) {
         markdown = markdown.replace(new RegExp("\\$" + container + "\\$", "g"), settings.containers[container][0] + "\n \n ");
         markdown = markdown.replace(new RegExp("\\$\\\/" + container + "\\$", "g"), (container == "avs" ? "" : " \n") + settings.containers[container][1] + "\n ");
