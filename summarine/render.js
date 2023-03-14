@@ -20,7 +20,7 @@ const md = new MarkdownIt({
     .use(MarkdownItDeflist)
     .use(MarkdownItEmoji)
     .use(MarkdownItAbbr)
-    .use(MarkdownItMultiMdTable, { enableMultilineRows: true, enableRowspan: true })
+    .use(MarkdownItMultiMdTable, { multiline: true, rowspan: true })
     .use(tm, {
         engine: require('katex'),
         delimiters: 'dollars',
