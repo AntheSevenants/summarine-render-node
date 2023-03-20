@@ -318,6 +318,7 @@ span.symbol
 {
 	font-family: "Oswald";
 	margin: 0;
+	color: #fff !important;
 }
 
 .modal_ a {
