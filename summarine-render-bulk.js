@@ -34,7 +34,7 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
     let groups = {}
 
     directories.forEach(filename => {
-        if (filename == ".renderer") {
+        if (filename.charAt(0) == ".") {
             return;
         }
 
