@@ -1603,6 +1603,10 @@ span.highlight.heading_five
 {
 	padding: 0.5em;
 	font-weight: bold;
+
+	text-align: center;
+
+	caption-side: top;
 }
 
 .summary table.loose
