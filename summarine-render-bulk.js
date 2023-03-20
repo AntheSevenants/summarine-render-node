@@ -1,6 +1,7 @@
 const summarine = require("./summarine/render");
 const Templating = require("./summarine/templating");
 const fs = require('fs');
+const fse = require('fs-extra');
 const path = require('path');
 
 if (process.argv.length < 3) {
@@ -58,6 +59,8 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
     Templating.renderOverview(groups, currentCourse, courseMeta["colour"]).then(htmlOverview => {
         fs.writeFile(indexFile, htmlOverview, () => { });
     });
+
+    fse.copySync("summarine/static/", "output/static/", { overwrite: true });
 });
 
 
