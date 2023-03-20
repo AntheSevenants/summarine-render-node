@@ -36,7 +36,8 @@ const Regexes = {
     "VIDEO": /\$video=(.*)\$/g,
     "TOOLTIP": /\$tt=(.*?)\$(.*?)\$\/tt\$/g,
     "LEGACY_TABLE": /^(\|[-]+\|)$/gm,
-    "LEGACY_LAYOUT": /<\/div>\n([-]+)\n/g
+    "LEGACY_LAYOUT": /<\/div>\n([-]+)\n/g,
+	"PAGE": /\$p=(.*?)\$/g,
 }
 
 const Colours = {
@@ -91,6 +92,22 @@ async function render(coursePath, filename, settings) {
         (match, captureGroup) => { return Tools.generateVideo(captureGroup); });
     markdown = markdown.replace(Regexes.TOOLTIP,
         (match, title, text) => { return "<abbr title=\"" + title + "\">" + text + "</abbr>" });
+
+    let pageReplacementCount = 0;
+	markdown = markdown.replace(Regexes.PAGE,
+			(match, pageNumber) => {
+				let prefix = "";
+				if (pageReplacementCount != 0) {
+					prefix = "</div></div>"
+				}
+
+				pageReplacementCount++;
+
+				return `${prefix}<div class=\"page-container\"><div class=\"page-page\">p. ${pageNumber}</div><div class=\"page-content\">` });
+
+	if (pageReplacementCount > 0) {
+		markdown = markdown + "\n\n</div></div>";
+	}
 
     /* Fix legacy tables by replacing single |---| with a flippin lot of them! - because that's valid markdown right? */
     markdown = markdown.replace(Regexes.LEGACY_TABLE,

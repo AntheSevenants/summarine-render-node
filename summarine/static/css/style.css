@@ -2347,6 +2347,40 @@ span.highlight.heading_five
 	/*height: 100%;*/
 }
 
+.summary .item.page {
+	margin-top: 1em;
+	text-align: center;
+}
+
+.summary .page-container {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+.summary .page-page {
+	width: 10%;
+
+	padding-top: 0.5em;
+	margin-top: 0.5em;
+	margin-left: 1em;
+
+	border-radius: 15px;
+
+	text-align: center;
+
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.summary .page-content {
+	flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+	align-items: flex-start;
+    align-content: center;
+    flex-direction: row;
+}
+
 /* SHADOWS */
 
 .item.modal, .item.course, .item.navigation, .item.overview, .summary .box, .summary table, button, .progressbar, .item.button, .item.job

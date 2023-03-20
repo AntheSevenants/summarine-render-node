@@ -54,9 +54,39 @@
 	    	}
 	    }
 
+        /*
+		    With the new page cite containers etc, the counter-increments no longer work
+		    So, I'm counting everything manually 
+	    */
+	    function adaptHeaders(targetDocument) {
+	    	let headers = targetDocument.querySelectorAll("h1,h2,h3,h4,h5,h6");
+
+	    	let headerCount = [ 0, 0, 0, 0, 0, 0 ];
+	    	headers.forEach(header => {
+	    		// e.g. "h4" = index 3
+	    		const level = parseInt(header.localName.charAt(1)) - 1;
+
+	    		headerCount[level]++;
+
+	    		let headerPrefix = "";
+	    		for (let i = 1; i <= level; i++) {
+	    			headerPrefix += `${headerCount[i]}.`;
+	    		}
+
+	    		for (let i = level + 1; i < headerCount.length; i++) {
+	    			headerCount[i] = 0;
+	    		}
+
+	    		//headerPrefix = headerPrefix.substring(0, headerPrefix.length - 1);
+
+	    		header.textContent = `${headerPrefix} ${header.textContent}`;
+	    	});
+	    }
+
         const renderedViewer = document.querySelector("#segment_renderedViewer");
         adaptList(renderedViewer);
         adaptCode(renderedViewer);
+        adaptHeaders(renderedViewer);
     </script>
 </div>
 {% endblock %}
