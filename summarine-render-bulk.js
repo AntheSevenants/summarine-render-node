@@ -34,6 +34,10 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
     let groups = {}
 
     directories.forEach(filename => {
+        if (filename == ".renderer") {
+            return;
+        }
+
         const outputFile = `${outputDirectory}/${filename}.html`;
         const fileMetaPath = `${coursePath}/${filename}/meta.json`;
 
