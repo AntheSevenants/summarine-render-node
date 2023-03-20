@@ -1,6 +1,7 @@
 const summarine = require("./summarine/render");
 const Templating = require("./summarine/templating");
 const fs = require('fs');
+const path = require('path');
 
 if (process.argv.length < 3) {
     throw Error("Please supply course folder path");
@@ -48,12 +49,13 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
         });
     });
 
+    const currentCourse = path.basename(coursePath);
     const courseMetaPath = `${coursePath}/meta.json`;
     const courseMeta = JSON.parse(fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
 
     const indexFile = `${outputDirectory}/index.html`;
 
-    Templating.renderOverview(groups, courseMeta["colour"]).then(htmlOverview => {
+    Templating.renderOverview(groups, currentCourse, courseMeta["colour"]).then(htmlOverview => {
         fs.writeFile(indexFile, htmlOverview, () => { });
     });
 });

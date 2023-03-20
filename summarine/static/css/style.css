@@ -302,7 +302,7 @@ span.symbol
 	border-style: solid;
 }
 
-.item.modal
+.item.modal_
 {
 	padding: 1em;
 
@@ -314,30 +314,34 @@ span.symbol
 	border-radius: 30px;
 }
 
-.modal h1, .modal h2
+.modal_ h1, .modal_ h2
 {
 	font-family: "Oswald";
 	margin: 0;
 }
 
-.item.modal.big
+.modal_ a {
+	color: #fff;
+}
+
+.item.modal_.big
 {
 	margin: 0;
 }
 
-.item.modal.ui
+.item.modal_.ui
 {
 	margin: 1em;
 }
 
-.item.modal.dock
+.item.modal_.dock
 {
 	text-align: center;
 	position: absolute;
 	bottom: 2em;
 }
 
-.item.modal.dock.extra
+.item.modal_.dock.extra
 {
 	display: none;
 
@@ -2387,7 +2391,7 @@ span.highlight.heading_five
 
 /* SHADOWS */
 
-.item.modal, .item.course, .item.navigation, .item.overview, .summary .box, .summary table, button, .progressbar, .item.button, .item.job
+.item.modal_, .item.course, .item.navigation, .item.overview, .summary .box, .summary table, button, .progressbar, .item.button, .item.job
 {
 	box-shadow: 0px 7px 8px 0px rgba(127,127,127,0.3);
 }
@@ -2474,7 +2478,7 @@ body
 	height: 5em;
 }
 
-.item.modal.dock.extra
+.item.modal_.dock.extra
 {
 	width: 90%;
 }
@@ -2500,6 +2504,10 @@ body
 	width: 100% !important;
 	margin-left: 0;
 	margin-right: 0;
+}
+
+.item.modal_ {
+	width: 100%;
 }
 }
 

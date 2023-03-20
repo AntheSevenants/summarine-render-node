@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const Tools = require("./tools");
 const Templating = require("./templating");
 
@@ -67,6 +68,7 @@ async function render(coursePath, filename, settings) {
     let markdown = await fs.readFileSync(fileContentPath, { encoding: "utf8" });
     const courseMeta = JSON.parse(await fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
     const currentColour = courseMeta["colour"];
+    const currentCourse = path.basename(coursePath);
 
     for (let container in settings.containers) {
         markdown = markdown.replace(new RegExp("\\$" + container + "\\$", "g"), settings.containers[container][0] + "\n \n ");
@@ -142,7 +144,7 @@ async function render(coursePath, filename, settings) {
     markdown = markdown.replace(/\$colour/g, Colours[currentColour][0]);
 
     markdown = md.render(markdown);
-    markdown = await Templating.wrapTemplate(markdown, currentColour);
+    markdown = await Templating.wrapTemplate(markdown, currentCourse, currentColour);
 
     return markdown;
 }

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="content" id="view_courses">
+    {% include 'notice.html' %}
     {% for group_name, group in groups %}
         <div class="group">
             <div class="name">{{ group_name }}</div>
