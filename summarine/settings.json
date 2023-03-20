@@ -434,6 +434,14 @@
         [
             "$principle",
             "\ud83d\udca1"
+        ],
+        [
+            "$zn",
+            "<span style=\"text-decoration:overline;\">zn</span>"
+        ],
+        [
+            "$cycle",
+            "\u21bb"
         ]
     ]
 }
