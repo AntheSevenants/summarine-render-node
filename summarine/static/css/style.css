@@ -1827,11 +1827,11 @@ span.highlight.heading_five
 {
 	counter-reset: h7
 }
-
+/*
 .summary h1:before
 {
 	counter-increment: h1;
-	/*content: counter(h1) ". "*/
+	/*content: counter(h1) ". "*//*
 }
 
 .summary h2:before
@@ -1862,7 +1862,7 @@ span.highlight.heading_five
 {
 	counter-increment: h6;
 	content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". " 
-}
+}*/
 
 /* OBJECTS */
 
