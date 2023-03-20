@@ -9,6 +9,7 @@ const MarkdownItDeflist = require('markdown-it-deflist');
 const MarkdownItEmoji = require('markdown-it-emoji');
 const MarkdownItAbbr = require('markdown-it-abbr');
 const MarkdownItMultiMdTable = require('markdown-it-multimd-table');
+const MarkdownItMark = require('markdown-it-mark');
 const tm = require('markdown-it-texmath');
 
 const md = new MarkdownIt({
@@ -21,6 +22,7 @@ const md = new MarkdownIt({
     .use(MarkdownItEmoji)
     .use(MarkdownItAbbr)
     .use(MarkdownItMultiMdTable, { multiline: true, rowspan: true })
+    .use(MarkdownItMark)
     .use(tm, {
         engine: require('katex'),
         delimiters: 'dollars',
