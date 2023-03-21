@@ -34,7 +34,7 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
     let groups = {}
 
     directories.forEach(filename => {
-        if (filename == ".renderer") {
+        if (filename.charAt(0) == ".") {
             return;
         }
 
@@ -53,10 +53,9 @@ fs.readFile("summarine/settings.json", 'utf8', (err, settings) => {
             fs.writeFile(outputFile, htmlContent, () => { });
         });
     });
-
-    const currentCourse = path.basename(coursePath);
     const courseMetaPath = `${coursePath}/meta.json`;
     const courseMeta = JSON.parse(fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
+    const currentCourse = courseMeta["title"];
 
     const indexFile = `${outputDirectory}/index.html`;
 

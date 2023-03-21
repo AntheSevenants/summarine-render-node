@@ -322,7 +322,7 @@ span.symbol
 }
 
 .modal_ a {
-	color: #fff;
+	color: #fff !important;
 }
 
 .item.modal_.big

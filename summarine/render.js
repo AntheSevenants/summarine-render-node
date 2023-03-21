@@ -68,7 +68,7 @@ async function render(coursePath, filename, settings) {
     let markdown = await fs.readFileSync(fileContentPath, { encoding: "utf8" });
     const courseMeta = JSON.parse(await fs.readFileSync(courseMetaPath, { encoding: "utf8" }));
     const currentColour = courseMeta["colour"];
-    const currentCourse = path.basename(coursePath);
+    const currentCourse = courseMeta["title"];
 
     for (let container in settings.containers) {
         markdown = markdown.replace(new RegExp("\\$" + container + "\\$", "g"), settings.containers[container][0] + "\n \n ");

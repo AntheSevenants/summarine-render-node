@@ -6,3 +6,5 @@ In 2017, I built my own program for taking notes. Ever since, I have used this p
 Currently, only a fraction of the functionality of my notes program has been ported to this version. However, for my current research notes, the implemented functionality should suffice.
 
 Bear in mind that this repository only contains the *renderer* for my notes, not the notes themselves.
+
+Also, since I only use Javascript on the client, so this is my first foray into Node. It probably shows.
