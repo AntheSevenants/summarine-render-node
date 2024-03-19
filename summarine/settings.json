@@ -440,6 +440,10 @@
             "<span style=\"text-decoration:overline;\">zn</span>"
         ],
         [
+            "$w",
+            "<span style=\"text-decoration:overline;\">w</span>"
+        ],
+        [
             "$cycle",
             "\u21bb"
         ],
